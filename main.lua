@@ -1,3 +1,4 @@
+local love = require("love")
 -- Colors
 local background_color = {0.1, 0.2, 0.3}
 local player_color = {1, 0.8, 0.2}

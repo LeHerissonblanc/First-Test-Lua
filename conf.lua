@@ -1,3 +1,4 @@
+local love = require("love")
 function love.conf(t)
     t.window.title = "Mon jeu"
     t.window.width = 800
