@@ -26,16 +26,20 @@ local function move(dt)
     player.dir.y = 0
 
     -- input to direction vector
-    if love.keyboard.isDown("right", "d") then player.dir.x = player.dir.x + 1 end
-    if love.keyboard.isDown("left", "q")  then player.dir.x = player.dir.x - 1 end
-    if love.keyboard.isDown("down", "s")  then player.dir.y = player.dir.y + 1 end
-    if love.keyboard.isDown("up", "z")    then player.dir.y = player.dir.y - 1 end
-
+    if love.keyboard.isDown('right', 'd') then player.dir.x = player.dir.x + 1 end
+    if love.keyboard.isDown('left', 'q')  then player.dir.x = player.dir.x - 1 end
+    if love.keyboard.isDown('down', 's')  then player.dir.y = player.dir.y + 1 end
+    if love.keyboard.isDown('up', 'z')    then player.dir.y = player.dir.y - 1 end
+    
     normalize(player.dir)
 
-    -- Apply speed and delta time
-    player.x = player.x + player.dir.x * player.speed * dt
-    player.y = player.y + player.dir.y * player.speed * dt
+    -- Set velocity
+    player.velocity.x = player.dir.x * player.speed * dt
+    player.velocity.y = player.dir.y * player.speed * dt
+
+    -- Apply velocity
+    player.x = player.x + player.velocity.x
+    player.y = player.y + player.velocity.y
 end
 
 local function keep_in_bounds()
@@ -82,6 +86,7 @@ function love.load()
         y = 100,
         radius = 25,
         speed = 500,
+        velocity = { x = 0, y = 0 },
         dir = { x = 0, y = 0 }
     }
 
