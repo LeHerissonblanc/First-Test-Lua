@@ -34,9 +34,14 @@ local function move(dt)
     normalize(player.dir)
 
     -- Set velocity
-    player.velocity.x = player.dir.x * player.speed * dt
-    player.velocity.y = player.dir.y * player.speed * dt
+    player.velocity.x = player.velocity.x + (player.dir.x * player.speed * dt)
+    player.velocity.y = player.velocity.y + (player.dir.y * player.speed * dt)
 
+    -- set friction
+    local friction = 0.9
+
+    player.velocity.x = player.velocity.x * friction
+    player.velocity.y = player.velocity.y * friction
     -- Apply velocity
     player.x = player.x + player.velocity.x
     player.y = player.y + player.velocity.y
@@ -74,6 +79,10 @@ local function check_coin_collision()
     end
 end
 
+
+
+
+
 -- LÖVE callbacks
 function love.load()
     score = 0
@@ -85,7 +94,7 @@ function love.load()
         x = 100,
         y = 100,
         radius = 25,
-        speed = 500,
+        speed = 120,
         velocity = { x = 0, y = 0 },
         dir = { x = 0, y = 0 }
     }
