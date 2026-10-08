@@ -90,8 +90,9 @@ function love.load()
     font = love.graphics.newFont("fonts/JetBrainsMono-Regular.ttf", 24)
     love.graphics.setLineStyle("smooth")
 
-    local sound = love.audio.newSource("assets/music/time_for_adventure.mp3", "stream")
-    love.audio.play(sound)
+    local music = love.audio.newSource("assets/music/time_for_adventure.mp3", "static")
+    music:setLooping(true)
+    music:play()
     
     player = {
         x = 100,
