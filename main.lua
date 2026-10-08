@@ -38,7 +38,7 @@ local function move(dt)
     player.velocity.y = player.velocity.y + (player.dir.y * player.speed * dt)
 
     -- set friction
-    local friction = 0.9
+    local friction = 0.95
 
     player.velocity.x = player.velocity.x * friction
     player.velocity.y = player.velocity.y * friction
@@ -89,12 +89,15 @@ function love.load()
     
     font = love.graphics.newFont("fonts/JetBrainsMono-Regular.ttf", 24)
     love.graphics.setLineStyle("smooth")
+
+    local sound = love.audio.newSource("assets/music/time_for_adventure.mp3", "stream")
+    love.audio.play(sound)
     
     player = {
         x = 100,
         y = 100,
         radius = 25,
-        speed = 120,
+        speed = 60,
         velocity = { x = 0, y = 0 },
         dir = { x = 0, y = 0 }
     }
