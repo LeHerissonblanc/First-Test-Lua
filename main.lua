@@ -90,9 +90,15 @@ function love.load()
     font = love.graphics.newFont("fonts/JetBrainsMono-Regular.ttf", 24)
     love.graphics.setLineStyle("smooth")
 
-    local music = love.audio.newSource("assets/music/time_for_adventure.mp3", "static")
-    music:setLooping(true)
-    music:play()
+    --musics
+    local intro_sound = love.audio.newSource("assets/sound_effects/intro.mp3", "static")
+    intro_sound:play()
+    
+    local bg_music = love.audio.newSource("assets/music/time_for_adventure.mp3", "static")
+    bg_music:setLooping(true)
+    bg_music:play()
+
+    
     
     player = {
         x = 100,
