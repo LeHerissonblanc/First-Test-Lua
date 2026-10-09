@@ -90,16 +90,25 @@ function love.load()
     font = love.graphics.newFont("fonts/JetBrainsMono-Regular.ttf", 24)
     love.graphics.setLineStyle("smooth")
 
+    --splash screen
+    local splash_image = love.graphics.newImage("assets/splash_screen.png")
+    love.graphics.draw(splash_image, (love.graphics.getWidth() - splash_image:getWidth()) / 2, (love.graphics.getHeight() - splash_image:getHeight()) / 2)
+    love.graphics.present()
+    love.graphics.setBackgroundColor(0, 0, 0)
+
     --musics
     local intro_sound = love.audio.newSource("assets/sound_effects/intro.mp3", "static")
     intro_sound:play()
+
+
+    love.timer.sleep(intro_sound:getDuration()) -- wait for the intro sound finished before starting the background music
     
     local bg_music = love.audio.newSource("assets/music/time_for_adventure.mp3", "static")
     bg_music:setLooping(true)
     bg_music:play()
 
     
-    
+    --Initialize
     player = {
         x = 100,
         y = 100,
